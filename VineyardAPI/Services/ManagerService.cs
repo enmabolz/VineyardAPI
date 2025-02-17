@@ -11,7 +11,7 @@ namespace VineyardManager._Services
             _managerRepository = managerRepository;
         }
 
-        public async Task<IEnumerable<Guid>> GetIdsOfManagersAsync()
+        public async Task<IEnumerable<int>> GetIdsOfManagersAsync()
         {
             var managers = await _managerRepository.GetAllManagersAsync();
 
