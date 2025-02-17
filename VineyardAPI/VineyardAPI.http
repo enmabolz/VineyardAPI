@@ -1,0 +1,6 @@
+@VineyardAPI_HostAddress = http://localhost:5269
+
+GET {{VineyardAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
