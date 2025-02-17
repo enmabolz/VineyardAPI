@@ -2,7 +2,7 @@
 {
     public class Parcel
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public required string ManagerId { get; set; }
         public virtual Manager Manager { get; set; }
         public int VineyardId { get; set; }
