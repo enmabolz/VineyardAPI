@@ -1,4 +1,5 @@
-﻿using VineyardAPI.Repositories;
+﻿using VineyardAPI.Interfaces.Repositories;
+using VineyardAPI.Interfaces.Services;
 
 namespace VineyardAPI.Services
 {
@@ -28,6 +29,11 @@ namespace VineyardAPI.Services
             }
 
             return managers.Select(x => x.TaxNumber);
+        }
+
+        public async Task<Dictionary<string, int>> GetManagersTotalAdministratedAreaAsync()
+        {
+            return await _managerRepository.GetManagersTotalAdministratedAreaAsync();
         }
     }
 }

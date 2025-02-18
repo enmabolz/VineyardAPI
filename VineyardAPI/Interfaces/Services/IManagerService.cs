@@ -1,11 +1,11 @@
 ﻿using VineyardAPI.Models;
 
-namespace VineyardAPI.Services
+namespace VineyardAPI.Interfaces.Services
 {
     public interface IManagerService
     {
         Task<IEnumerable<int>> GetIdsOfManagersAsync();
         Task<IEnumerable<string>> GetTaxNumbersOrderedAsync(bool sorted);
-
+        Task<Dictionary<string, int>> GetManagersTotalAdministratedAreaAsync();
     }
 }

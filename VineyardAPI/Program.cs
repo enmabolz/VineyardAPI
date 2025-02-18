@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using VineyardAPI.Data;
+using VineyardAPI.Interfaces.Repositories;
+using VineyardAPI.Interfaces.Services;
 using VineyardAPI.Repositories;
 using VineyardAPI.Services;
 
@@ -18,7 +20,12 @@ builder.Services.AddDbContext<VineyardContext>(
 builder.Services.AddTransient<DataBaseSeeder>();
 
 builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
+builder.Services.AddScoped<IParcelRepository, ParcelRepository>();
+builder.Services.AddScoped<IGrapeRepository, GrapeRepository>();
+
 builder.Services.AddScoped<IManagerService, ManagerService>();
+builder.Services.AddScoped<IParcelService, ParcelService>();
+builder.Services.AddScoped<IGrapeService, GrapeService>();
 
 
 var app = builder.Build();

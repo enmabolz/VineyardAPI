@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using VineyardAPI.Services;
+using VineyardAPI.Interfaces.Services;
 
 namespace VineyardAPI.Controllers
 {
@@ -28,6 +28,14 @@ namespace VineyardAPI.Controllers
             var taxNumbers = await _managerService.GetTaxNumbersOrderedAsync(sorted);
 
             return Ok(taxNumbers);
+        }
+
+        [HttpGet("totalarea")]
+        public async Task<IActionResult> GetManagersTotalAdministratedAreaAsync()
+        {
+            var administratedAreaByManager = await _managerService.GetManagersTotalAdministratedAreaAsync();
+
+            return Ok(administratedAreaByManager);
         }
 
     }
