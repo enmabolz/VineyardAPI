@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VineyardAPI.Interfaces.Services;
+using VineyardAPI.Services;
 
 namespace VineyardAPI.Controllers
 {
@@ -18,9 +19,15 @@ namespace VineyardAPI.Controllers
         [HttpGet("area")]
         public async Task<IActionResult> GetAreaByGrapesAsync()
         {
-            var areas = await _grapeService.GetAreaByGrapeAsync();
+            try
+            {
+                var areas = await _grapeService.GetAreaByGrapeAsync();
 
-            return Ok(areas);
+                return Ok(areas);
+            } catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }  
         }
     }
 }

@@ -16,9 +16,16 @@ namespace VineyardAPI.Services
 
         public async Task<Dictionary<string, int>> GetAreaByGrapeAsync()
         {
-            var areas = await _grapeRepository.GetTotalAreaByGrapeAsync();
-           
-            return areas;
+            try
+            {
+                var areas = await _grapeRepository.GetTotalAreaByGrapeAsync();
+
+                return areas;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("There was a problem with the database or the Server.", ex);
+            }
         }
     }
 }

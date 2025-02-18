@@ -18,9 +18,15 @@ namespace VineyardAPI.Controllers
         [HttpGet("managers")]
         public async Task<IActionResult> GetVineyardsWithManagersAsync()
         {
-            var vineyardsWithManagers = await _vineyardService.GetVineyardsWithManagersAsync();
+            try
+            {
+                var vineyardsWithManagers = await _vineyardService.GetVineyardsWithManagersAsync();
 
-            return Ok(vineyardsWithManagers);
+                return Ok(vineyardsWithManagers);
+            } catch (Exception ex) 
+            { 
+                return StatusCode(500, new { message = ex.Message }); 
+            }
         }
     }
 }

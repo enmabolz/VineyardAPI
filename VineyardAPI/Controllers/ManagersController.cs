@@ -17,26 +17,48 @@ namespace VineyardAPI.Controllers
         [HttpGet("ids")]
         public async Task<IActionResult> GetAllIdsOfManagersAsync()
         {
-            var managerIds = await _managerService.GetIdsOfManagersAsync();
+            try
+            {
+                var managerIds = await _managerService.GetIdsOfManagersAsync();
 
-            return Ok(managerIds);
+                return Ok(managerIds);
+            } catch (Exception ex)
+            {
+                return StatusCode(500, new {message = ex.Message});
+            }
+            
         }
 
         [HttpGet("taxnumbers")]
         public async Task<IActionResult> GetAllTaxNunmbersFromManagersAsync([FromQuery] bool sorted)
         {
-            var taxNumbers = await _managerService.GetTaxNumbersOrderedAsync(sorted);
+            try
+            {
+                var taxNumbers = await _managerService.GetTaxNumbersOrderedAsync(sorted);
 
-            return Ok(taxNumbers);
+                return Ok(taxNumbers);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+
         }
 
         [HttpGet("totalarea")]
         public async Task<IActionResult> GetManagersTotalAdministratedAreaAsync()
         {
-            var administratedAreaByManager = await _managerService.GetManagersTotalAdministratedAreaAsync();
+            try
+            {
+                var administratedAreaByManager = await _managerService.GetManagersTotalAdministratedAreaAsync();
 
-            return Ok(administratedAreaByManager);
-        }
+                return Ok(administratedAreaByManager);
+
+            } catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+         }
 
     }
 }

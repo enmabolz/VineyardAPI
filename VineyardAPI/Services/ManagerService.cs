@@ -1,4 +1,5 @@
-﻿using VineyardAPI.Interfaces.Repositories;
+﻿using Microsoft.Data.SqlClient;
+using VineyardAPI.Interfaces.Repositories;
 using VineyardAPI.Interfaces.Services;
 
 namespace VineyardAPI.Services
@@ -14,26 +15,47 @@ namespace VineyardAPI.Services
 
         public async Task<IEnumerable<int>> GetIdsOfManagersAsync()
         {
-            var managers = await _managerRepository.GetAllManagersAsync();
+            try
+            {
+                var managers = await _managerRepository.GetAllManagersAsync();
 
-            return managers.Select(x => x.Id);
+                return managers.Select(x => x.Id);
+            } catch (Exception ex) 
+            {
+                throw new Exception("There was a problem with the database or the Server.", ex);   
+            }
         }
 
         public async Task<IEnumerable<string>> GetTaxNumbersOrderedAsync(bool sorted)
         {
-            var managers = await _managerRepository.GetAllManagersAsync();
-
-            if (sorted)
+            try
             {
-                return managers.OrderBy(x => x.Name).Select(x => x.TaxNumber);
+                var managers = await _managerRepository.GetAllManagersAsync();
+
+                if (sorted)
+                {
+                    return managers.OrderBy(x => x.Name).Select(x => x.TaxNumber);
+                }
+
+                return managers.Select(x => x.TaxNumber);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("There was a problem with the database or the Server.", ex);
             }
 
-            return managers.Select(x => x.TaxNumber);
         }
 
         public async Task<Dictionary<string, int>> GetManagersTotalAdministratedAreaAsync()
         {
-            return await _managerRepository.GetManagersTotalAdministratedAreaAsync();
+            try
+            {
+                return await _managerRepository.GetManagersTotalAdministratedAreaAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("There was a problem with the database or the Server.", ex);
+            }
         }
     }
 }

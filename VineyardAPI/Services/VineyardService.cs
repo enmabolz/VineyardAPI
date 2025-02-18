@@ -14,7 +14,14 @@ namespace VineyardAPI.Services
 
         public async Task<Dictionary<string, List<string>>> GetVineyardsWithManagersAsync()
         {
-            return await _vineyardRepository.GetVineyardsWithManagersAsync();
+            try
+            {
+                return await _vineyardRepository.GetVineyardsWithManagersAsync();
+            } catch (Exception ex)
+            {
+                throw new Exception("There was a problem with the database or the Server.", ex);
+            }
+            
         }
     }
 }
