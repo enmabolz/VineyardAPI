@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VineyardAPI.Models;
+using VineyardAPI.Models.Entities;
 
 namespace VineyardAPI.Data;
 

@@ -1,4 +1,4 @@
-﻿using VineyardAPI.Models;
+﻿using VineyardAPI.Models.Entities;
 
 namespace VineyardAPI.Repositories.Interfaces;
 public interface IGrapeRepository

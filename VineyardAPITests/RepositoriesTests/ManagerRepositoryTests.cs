@@ -1,61 +1,55 @@
 ﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VineyardAPI.Models;
-using VineyardAPI.Repositories.Repositories;
+using VineyardAPI.Models.Entities;
+using VineyardAPI.Repositories.Interfaces;
 
-namespace VineyardAPITests.RepositoriesTests
+namespace VineyardAPITests.RepositoriesTests;
+
+public class ManagerRepositoryTests
 {
-    public class ManagerRepositoryTests
+    private readonly Mock<IManagerRepository> _mockRepository;
+
+    public ManagerRepositoryTests()
     {
-        private readonly Mock<IManagerRepository> _mockRepository;
+        _mockRepository = new Mock<IManagerRepository>();
+    }
 
-        public ManagerRepositoryTests()
+    [Fact]
+    public async Task GetManagersAsync_ReturnsAllManagers()
+    {
+        // Arrange
+        var mockManagers = new List<Manager>
         {
-            _mockRepository = new Mock<IManagerRepository>();
-        }
+            new Manager { Id = 1, Name = "Miguel Torres", TaxNumber = "132254524" },
+            new Manager { Id = 2, Name = "Ana Martín", TaxNumber = "143618668" }
+        };
 
-        [Fact]
-        public async Task GetManagersAsync_ReturnsAllManagers()
+        _mockRepository.Setup(repo => repo.GetAllManagersAsync())
+                       .ReturnsAsync(mockManagers);
+
+        // Act
+        var result = await _mockRepository.Object.GetAllManagersAsync();
+
+        // Assert
+        var expectedResult = new List<Manager> 
         {
-            // Arrange
-            var mockManagers = new List<Manager>
-            {
-                new Manager { Id = 1, Name = "Miguel Torres", TaxNumber = "132254524" },
-                new Manager { Id = 2, Name = "Ana Martín", TaxNumber = "143618668" }
-            };
+            new Manager { Id = 1, Name = "Miguel Torres", TaxNumber = "132254524" },
+            new Manager { Id = 2, Name = "Ana Martín", TaxNumber = "143618668" }
+        };
 
-            _mockRepository.Setup(repo => repo.GetAllManagersAsync())
-                           .ReturnsAsync(mockManagers);
+        var expectedTaxNumbers = expectedResult.Select(x => x.TaxNumber); 
+        var taxNumbersResult = result.Select(x => x.TaxNumber);
 
-            // Act
-            var result = await _mockRepository.Object.GetAllManagersAsync();
+        var expectedIds = expectedResult.Select(x => x.Id);
+        var idsResult = result.Select(x => x.Id);
 
-            // Assert
-            var expectedResult = new List<Manager> 
-            {
-                new Manager { Id = 1, Name = "Miguel Torres", TaxNumber = "132254524" },
-                new Manager { Id = 2, Name = "Ana Martín", TaxNumber = "143618668" }
-            };
+        var namesResult = result.Select(x => x.Name);
+        var expectedNames = expectedResult.Select(x => x.Name);
 
-            var expectedTaxNumbers = expectedResult.Select(x => x.TaxNumber); 
-            var taxNumbersResult = result.Select(x => x.TaxNumber);
+        Assert.Equal(expectedIds, idsResult);
+        Assert.Equal(expectedTaxNumbers, taxNumbersResult);
+        Assert.Equal(expectedNames, namesResult);
 
-            var expectedIds = expectedResult.Select(x => x.Id);
-            var idsResult = result.Select(x => x.Id);
-
-            var namesResult = result.Select(x => x.Name);
-            var expectedNames = expectedResult.Select(x => x.Name);
-
-            Assert.Equal(expectedIds, idsResult);
-            Assert.Equal(expectedTaxNumbers, taxNumbersResult);
-            Assert.Equal(expectedNames, namesResult);
-
-            Assert.Equal(2, result.Count());
-            
-        }
+        Assert.Equal(2, result.Count());
+        
     }
 }

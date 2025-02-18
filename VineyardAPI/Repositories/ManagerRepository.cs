@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VineyardAPI.Data;
-using VineyardAPI.Models;
+using VineyardAPI.Models.Entities;
 using VineyardAPI.Repositories.Interfaces;
 
 namespace VineyardAPI.Repositories;
