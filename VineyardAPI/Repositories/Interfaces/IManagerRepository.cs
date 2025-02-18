@@ -4,7 +4,7 @@ namespace VineyardAPI.Repositories.Interfaces;
 
 public interface IManagerRepository
 {
-    Task<IEnumerable<Manager>> GetAllManagersAsync();
+    Task<IEnumerable<Manager>> GetAllManagersWithoutParcelsAsync();
     Task<Dictionary<string, int>> GetManagersTotalAdministratedAreaAsync();
 
 }

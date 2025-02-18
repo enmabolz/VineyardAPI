@@ -3,7 +3,7 @@
 namespace VineyardAPI.Repositories.Interfaces;
 public interface IGrapeRepository
 {
-    Task<IEnumerable<Grape>> GetAllGrapesAsync();
+    Task<IEnumerable<Grape>> GetAllGrapesWithoutIncludedParcelsAsync();
     Task<Dictionary<string, int>> GetTotalAreaByGrapeAsync();
 }
 

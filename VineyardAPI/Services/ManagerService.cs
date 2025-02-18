@@ -9,7 +9,7 @@ public class ManagerService(IManagerRepository _managerRepository) : IManagerSer
     {
         try
         {
-            var managers = await _managerRepository.GetAllManagersAsync();
+            var managers = await _managerRepository.GetAllManagersWithoutParcelsAsync();
 
             return managers.Select(x => x.Id);
         }
@@ -23,7 +23,7 @@ public class ManagerService(IManagerRepository _managerRepository) : IManagerSer
     {
         try
         {
-            var managers = await _managerRepository.GetAllManagersAsync();
+            var managers = await _managerRepository.GetAllManagersWithoutParcelsAsync();
 
             if (sorted)
             {

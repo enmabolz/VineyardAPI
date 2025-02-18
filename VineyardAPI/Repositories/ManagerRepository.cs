@@ -7,7 +7,7 @@ namespace VineyardAPI.Repositories;
 
 public class ManagerRepository(VineyardContext _context) : IManagerRepository
 {
-    public async Task<IEnumerable<Manager>> GetAllManagersAsync()
+    public async Task<IEnumerable<Manager>> GetAllManagersWithoutParcelsAsync()
         => await _context.Managers.ToListAsync();
     
 

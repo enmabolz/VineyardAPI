@@ -7,7 +7,7 @@ namespace VineyardAPI.Repositories;
 
 public class GrapeRepository(VineyardContext _context) : IGrapeRepository
 {
-    public async Task<IEnumerable<Grape>> GetAllGrapesAsync()
+    public async Task<IEnumerable<Grape>> GetAllGrapesWithoutIncludedParcelsAsync()
         => await _context.Grapes.ToListAsync();
     
     public async Task<Dictionary<string, int>> GetTotalAreaByGrapeAsync()

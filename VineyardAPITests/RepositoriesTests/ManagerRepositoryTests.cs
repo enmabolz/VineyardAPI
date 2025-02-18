@@ -23,11 +23,11 @@ public class ManagerRepositoryTests
             new Manager { Id = 2, Name = "Ana Martín", TaxNumber = "143618668" }
         };
 
-        _mockRepository.Setup(repo => repo.GetAllManagersAsync())
+        _mockRepository.Setup(repo => repo.GetAllManagersWithoutParcelsAsync())
                        .ReturnsAsync(mockManagers);
 
         // Act
-        var result = await _mockRepository.Object.GetAllManagersAsync();
+        var result = await _mockRepository.Object.GetAllManagersWithoutParcelsAsync();
 
         // Assert
         var expectedResult = new List<Manager> 

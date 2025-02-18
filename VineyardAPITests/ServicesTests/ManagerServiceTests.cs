@@ -26,7 +26,7 @@ public class ManagerServiceTests
             new Manager { Id = 3, Name = "Carlos Ruiz", TaxNumber = "78903228" }
         };
 
-        _mockRepository.Setup(repo => repo.GetAllManagersAsync())
+        _mockRepository.Setup(repo => repo.GetAllManagersWithoutParcelsAsync())
                        .ReturnsAsync(mockManagers);
 
         // Act
