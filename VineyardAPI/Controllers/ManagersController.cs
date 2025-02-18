@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using VineyardManager._Services;
+using VineyardAPI.Services;
 
-namespace VineyardManager.Controllers
+namespace VineyardAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -15,7 +15,7 @@ namespace VineyardManager.Controllers
         }
 
         [HttpGet("ids")]
-        public async Task<IActionResult> GetAllIdsOfManagersAsync() 
+        public async Task<IActionResult> GetAllIdsOfManagersAsync()
         {
             var managerIds = await _managerService.GetIdsOfManagersAsync();
 
@@ -23,10 +23,10 @@ namespace VineyardManager.Controllers
         }
 
         [HttpGet("taxnumbers")]
-        public async Task<IActionResult> GetAllTaxNunmbersFromManagersAsync([FromQuery] bool sorted) 
+        public async Task<IActionResult> GetAllTaxNunmbersFromManagersAsync([FromQuery] bool sorted)
         {
             var taxNumbers = await _managerService.GetTaxNumbersOrderedAsync(sorted);
-            
+
             return Ok(taxNumbers);
         }
 

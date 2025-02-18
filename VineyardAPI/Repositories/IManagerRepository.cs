@@ -1,6 +1,6 @@
-﻿using VineyardManager.Models;
+﻿using VineyardAPI.Models;
 
-namespace VineyardManager.Repositories
+namespace VineyardAPI.Repositories
 {
     public interface IManagerRepository
     {

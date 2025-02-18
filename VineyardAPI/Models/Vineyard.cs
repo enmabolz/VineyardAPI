@@ -1,4 +1,4 @@
-﻿namespace VineyardManager.Models
+﻿namespace VineyardAPI.Models
 {
     public class Vineyard
     {

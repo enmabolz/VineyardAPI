@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VineyardManager.Models;
+using VineyardAPI.Models;
 
-namespace VineyardManager.Data
+namespace VineyardAPI.Data
 {
     public class VineyardContext : DbContext
     {
-        public VineyardContext(DbContextOptions<VineyardContext> options): base(options) {}
+        public VineyardContext(DbContextOptions<VineyardContext> options) : base(options) { }
+
 
         public DbSet<Manager> Managers { set; get; }
         public DbSet<Grape> Grapes { get; set; }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VineyardManager.Data;
-using VineyardManager.Models;
+using VineyardAPI.Data;
+using VineyardAPI.Models;
 
-namespace VineyardManager.Repositories
+namespace VineyardAPI.Repositories
 {
     public class ManagerRepository : IManagerRepository
     {

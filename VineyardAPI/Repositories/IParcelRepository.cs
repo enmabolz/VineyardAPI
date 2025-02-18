@@ -1,4 +1,4 @@
-﻿namespace VineyardManager.Repositories
+﻿namespace VineyardAPI.Repositories
 {
     public class IParcelRepository
     {

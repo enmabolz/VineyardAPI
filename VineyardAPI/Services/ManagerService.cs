@@ -1,6 +1,6 @@
-﻿using VineyardManager.Repositories;
+﻿using VineyardAPI.Repositories;
 
-namespace VineyardManager._Services
+namespace VineyardAPI.Services
 {
     public class ManagerService : IManagerService
     {

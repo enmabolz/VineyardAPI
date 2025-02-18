@@ -1,10 +1,10 @@
-﻿using VineyardManager.Models;
+﻿using VineyardAPI.Models;
 
-namespace VineyardManager._Services
+namespace VineyardAPI.Services
 {
     public interface IManagerService
     {
-        Task<IEnumerable<int>> GetIdsOfManagersAsync(); 
+        Task<IEnumerable<int>> GetIdsOfManagersAsync();
         Task<IEnumerable<string>> GetTaxNumbersOrderedAsync(bool sorted);
 
     }
