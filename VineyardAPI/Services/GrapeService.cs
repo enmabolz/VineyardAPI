@@ -17,7 +17,6 @@ namespace VineyardAPI.Services
         public async Task<Dictionary<string, int>> GetAreaByGrapeAsync()
         {
             var areas = await _grapeRepository.GetTotalAreaByGrapeAsync();
-
            
             return areas;
         }
