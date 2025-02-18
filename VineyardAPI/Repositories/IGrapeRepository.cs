@@ -1,6 +1,9 @@
-﻿namespace VineyardAPI.Repositories
+﻿using VineyardAPI.Models;
+
+namespace VineyardAPI.Repositories
 {
-    public class IGrapeRepository
+    public interface IGrapeRepository
     {
+        Task<IEnumerable<Grape>> GetAllGrapesAsync(); 
     }
 }

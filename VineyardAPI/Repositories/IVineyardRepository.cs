@@ -1,6 +1,6 @@
 ﻿namespace VineyardAPI.Repositories
 {
-    public class IVineyardRepository
+    public interface IVineyardRepository
     {
     }
 }
