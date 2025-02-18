@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using VineyardAPI.Data;
-using VineyardAPI.Interfaces.Repositories;
-using VineyardAPI.Interfaces.Services;
 using VineyardAPI.Repositories;
+using VineyardAPI.Repositories.Interfaces;
 using VineyardAPI.Services;
+using VineyardAPI.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

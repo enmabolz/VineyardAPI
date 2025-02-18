@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using VineyardAPI.Controllers;
-using VineyardAPI.Interfaces.Services;
+using VineyardAPI.Services.Services;
 
 
 namespace VineyardAPITests.ControllersTests

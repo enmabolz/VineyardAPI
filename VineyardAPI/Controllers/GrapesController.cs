@@ -1,33 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using VineyardAPI.Interfaces.Services;
-using VineyardAPI.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using VineyardAPI.Services.Interfaces;
 
-namespace VineyardAPI.Controllers
+namespace VineyardAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class GrapesController(IGrapeService _grapeService) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class GrapesController : ControllerBase
+    [HttpGet("area")]
+    public async Task<IActionResult> GetAreaByGrapesAsync()
     {
-        private IGrapeService _grapeService;
-
-        public GrapesController(IGrapeService grapeService)
+        try
         {
-            _grapeService = grapeService;
-        }
+            var areas = await _grapeService.GetAreaByGrapeAsync();
 
-        [HttpGet("area")]
-        public async Task<IActionResult> GetAreaByGrapesAsync()
+            return Ok(areas);
+        } catch (Exception ex)
         {
-            try
-            {
-                var areas = await _grapeService.GetAreaByGrapeAsync();
-
-                return Ok(areas);
-            } catch (Exception ex)
-            {
-                return StatusCode(500, new { message = ex.Message });
-            }  
-        }
+            return StatusCode(500, new { message = ex.Message });
+        }  
     }
 }

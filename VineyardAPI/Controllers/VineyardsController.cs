@@ -1,32 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using VineyardAPI.Interfaces.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using VineyardAPI.Services.Interfaces;
 
-namespace VineyardAPI.Controllers
+namespace VineyardAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class VineyardsController(IVineyardService _vineyardService) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class VineyardsController : ControllerBase
+    [HttpGet("managers")]
+    public async Task<IActionResult> GetVineyardsWithManagersAsync()
     {
-        private readonly IVineyardService _vineyardService;
-
-        public VineyardsController(IVineyardService vineyardService)
+        try
         {
-            _vineyardService = vineyardService;
-        }
+            var vineyardsWithManagers = await _vineyardService.GetVineyardsWithManagersAsync();
 
-        [HttpGet("managers")]
-        public async Task<IActionResult> GetVineyardsWithManagersAsync()
-        {
-            try
-            {
-                var vineyardsWithManagers = await _vineyardService.GetVineyardsWithManagersAsync();
-
-                return Ok(vineyardsWithManagers);
-            } catch (Exception ex) 
-            { 
-                return StatusCode(500, new { message = ex.Message }); 
-            }
+            return Ok(vineyardsWithManagers);
+        } catch (Exception ex) 
+        { 
+            return StatusCode(500, new { message = ex.Message }); 
         }
     }
 }

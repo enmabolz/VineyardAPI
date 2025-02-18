@@ -1,31 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VineyardAPI.Interfaces.Repositories;
-using VineyardAPI.Interfaces.Services;
+﻿using VineyardAPI.Repositories.Interfaces;
+using VineyardAPI.Services.Interfaces;
 
-namespace VineyardAPI.Services
+namespace VineyardAPI.Services;
+
+public class GrapeService(IGrapeRepository _grapeRepository) : IGrapeService
 {
-    public class GrapeService : IGrapeService
+    public async Task<Dictionary<string, int>> GetAreaByGrapeAsync()
     {
-        
-        private readonly IGrapeRepository _grapeRepository;
-
-        public GrapeService(IGrapeRepository grapeRepository)
+        try
         {
-            _grapeRepository = grapeRepository;
+            var areas = await _grapeRepository.GetTotalAreaByGrapeAsync();
+
+            return areas;
         }
-
-        public async Task<Dictionary<string, int>> GetAreaByGrapeAsync()
+        catch (Exception ex)
         {
-            try
-            {
-                var areas = await _grapeRepository.GetTotalAreaByGrapeAsync();
-
-                return areas;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("There was a problem with the database or the Server.", ex);
-            }
+            throw new Exception("There was a problem with the database or the Server.", ex);
         }
     }
 }
+

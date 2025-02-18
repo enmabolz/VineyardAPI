@@ -1,6 +1,6 @@
 ﻿using Moq;
-using VineyardAPI.Interfaces.Repositories;
 using VineyardAPI.Models;
+using VineyardAPI.Repositories.Repositories;
 using VineyardAPI.Services;
 
 namespace VineyardAPITests.ServicesTests

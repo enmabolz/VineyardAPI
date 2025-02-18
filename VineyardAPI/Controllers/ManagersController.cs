@@ -1,64 +1,56 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using VineyardAPI.Interfaces.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using VineyardAPI.Services.Interfaces;
 
-namespace VineyardAPI.Controllers
+namespace VineyardAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ManagersController(IManagerService _managerService) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ManagersController : ControllerBase
+    [HttpGet("ids")]
+    public async Task<IActionResult> GetAllIdsOfManagersAsync()
     {
-        private readonly IManagerService _managerService;
-        public ManagersController(IManagerService managerService)
+        try
         {
-            _managerService = managerService;
+            var managerIds = await _managerService.GetIdsOfManagersAsync();
+
+            return Ok(managerIds);
+        } catch (Exception ex)
+        {
+            return StatusCode(500, new {message = ex.Message});
         }
+        
+    }
 
-        [HttpGet("ids")]
-        public async Task<IActionResult> GetAllIdsOfManagersAsync()
+    [HttpGet("taxnumbers")]
+    public async Task<IActionResult> GetAllTaxNunmbersFromManagersAsync([FromQuery] bool sorted)
+    {
+        try
         {
-            try
-            {
-                var managerIds = await _managerService.GetIdsOfManagersAsync();
+            var taxNumbers = await _managerService.GetTaxNumbersOrderedAsync(sorted);
 
-                return Ok(managerIds);
-            } catch (Exception ex)
-            {
-                return StatusCode(500, new {message = ex.Message});
-            }
-            
+            return Ok(taxNumbers);
         }
-
-        [HttpGet("taxnumbers")]
-        public async Task<IActionResult> GetAllTaxNunmbersFromManagersAsync([FromQuery] bool sorted)
+        catch (Exception ex)
         {
-            try
-            {
-                var taxNumbers = await _managerService.GetTaxNumbersOrderedAsync(sorted);
-
-                return Ok(taxNumbers);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = ex.Message });
-            }
-
+            return StatusCode(500, new { message = ex.Message });
         }
-
-        [HttpGet("totalarea")]
-        public async Task<IActionResult> GetManagersTotalAdministratedAreaAsync()
-        {
-            try
-            {
-                var administratedAreaByManager = await _managerService.GetManagersTotalAdministratedAreaAsync();
-
-                return Ok(administratedAreaByManager);
-
-            } catch (Exception ex)
-            {
-                return StatusCode(500, new { message = ex.Message });
-            }
-         }
 
     }
+
+    [HttpGet("totalarea")]
+    public async Task<IActionResult> GetManagersTotalAdministratedAreaAsync()
+    {
+        try
+        {
+            var administratedAreaByManager = await _managerService.GetManagersTotalAdministratedAreaAsync();
+
+            return Ok(administratedAreaByManager);
+
+        } catch (Exception ex)
+        {
+            return StatusCode(500, new { message = ex.Message });
+        }
+     }
+
 }

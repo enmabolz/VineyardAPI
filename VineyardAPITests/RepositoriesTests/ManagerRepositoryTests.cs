@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VineyardAPI.Interfaces.Repositories;
 using VineyardAPI.Models;
+using VineyardAPI.Repositories.Repositories;
 
 namespace VineyardAPITests.RepositoriesTests
 {
