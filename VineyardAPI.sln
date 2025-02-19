@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VineyardAPI", "VineyardAPI\VineyardAPI.csproj", "{721C8CF3-3AFF-42F2-AA1E-FEBC57532978}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VineyardAPITests", "VineyardAPITests\VineyardAPITests.csproj", "{FB1CF42E-353C-481C-86AF-1D11DD76A466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VineyardAPITests", "VineyardAPITests\VineyardAPITests.csproj", "{FB1CF42E-353C-481C-86AF-1D11DD76A466}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4892D160-25F2-4339-A300-2B20CE6E127E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FB1CF42E-353C-481C-86AF-1D11DD76A466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB1CF42E-353C-481C-86AF-1D11DD76A466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB1CF42E-353C-481C-86AF-1D11DD76A466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4892D160-25F2-4339-A300-2B20CE6E127E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4892D160-25F2-4339-A300-2B20CE6E127E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4892D160-25F2-4339-A300-2B20CE6E127E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4892D160-25F2-4339-A300-2B20CE6E127E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
