@@ -1,6 +1,6 @@
 # VineyardAPI
 
-API to manage vineyards, managers, grape varieties, and plots.
+API to manage vineyards, managers, grape varieties, and parcels.
 
 ## Description
 This project aims to develop a system for vineyard management that allows for the management of information related to vineyards, managers, grape varieties, and parcels records. The data is stored and managed in a SQL Server database, and the API is built using ASP.NET Core.
@@ -12,6 +12,10 @@ The system includes the creation of various endpoints to interact with the datab
 - Getting the total area by grape variety.
 - Getting the total area managed by each manager.
 - Getting the managers for each vineyard.
+
+This solution is composed by two projects:
+- VineyardAPI: the main project
+- VineyardAPITests: a project used to perform unit testing.
 
 ### Endpoints:
 
